@@ -11,56 +11,66 @@
             --main: #1e3a2f;
             --sec: #2d6a4f;
             --light: #e8f4f0;
-            --accent: #f8f9fa;
         }
         * {box-sizing: border-box; margin:0; padding:0;}
-        body {font-family: 'Amiri', serif; background: linear-gradient(to bottom, #f8f9fa, #e9ecef); color: #2c3e50; line-height: 1.9;}
-        header {background: linear-gradient(135deg, var(--main), var(--sec)); color: white; text-align: center; padding: 80px 20px;}
-        h1 {font-size: 3rem; margin:0;}
-        h2 {color: var(--main); border-bottom: 4px solid var(--sec); padding-bottom: 12px; font-size: 2rem; margin: 40px 0 25px;}
-        .container {max-width: 1200px; margin: 40px auto; padding: 25px; background: white; border-radius: 18px; box-shadow: 0 12px 35px rgba(0,0,0,0.12);}
+        body {font-family: 'Amiri', serif; background: linear-gradient(to bottom, #f8f9fa, #e9ecef); color: #2c3e50; line-height: 1.9; min-height: 100vh; display: flex; flex-direction: column;}
+        header {background: linear-gradient(135deg, var(--main), var(--sec)); color: white; text-align: center; padding: 50px 20px;}
+        header h1 {font-size: 2.4rem; margin-bottom: 10px;}
+        header p {font-size: 1.25rem; margin: 6px 0;}
+        h2 {color: var(--main); border-bottom: 4px solid var(--sec); padding-bottom: 10px; font-size: 1.9rem; margin: 35px 0 20px;}
+        .container {max-width: 1200px; margin: 20px auto; padding: 20px; background: white; border-radius: 18px; box-shadow: 0 12px 35px rgba(0,0,0,0.12); flex: 1;}
 
         /* Tabs */
-        .tabs {display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 40px; padding: 10px 0;}
-        @media (max-width: 768px) {.tabs {flex-direction: column; align-items: center;} .tab-btn {width: 90%; max-width: 400px;}}
-        .tab-btn {background: var(--sec); color: white; padding: 14px 24px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.15rem; transition: all 0.3s; white-space: nowrap;}
-        .tab-btn.active, .tab-btn:hover {background: var(--main); transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,0,0,0.2);}
+        .tabs {display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px;}
+        .tab-btn {background: var(--sec); color: white; padding: 12px 20px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.1rem; transition: all 0.3s;}
+        .tab-btn.active, .tab-btn:hover {background: var(--main); transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2);}
+        @media (max-width: 768px) {
+            .tabs {flex-direction: column; align-items: center;}
+            .tab-btn {width: 92%; font-size: 1.15rem; padding: 14px;}
+            header {padding: 35px 15px;}
+            header h1 {font-size: 2rem;}
+            header p {font-size: 1.1rem;}
+        }
 
-        .tab-content {display: none; animation: fadeIn 0.6s;}
+        .tab-content {display: none; animation: fadeIn 0.5s;}
         .tab-content.active {display: block;}
 
-        /* Accordion بـ details بدون JS */
-        details {margin-bottom: 15px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08);}
-        summary {background: var(--sec); color: white; padding: 20px; cursor: pointer; font-weight: bold; font-size: 1.35rem; list-style: none; display: flex; justify-content: space-between; align-items: center;}
+        /* Accordion بـ details */
+        details {margin-bottom: 14px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08);}
+        summary {background: var(--sec); color: white; padding: 18px; cursor: pointer; font-weight: bold; font-size: 1.35rem; list-style: none; display: flex; justify-content: space-between; align-items: center;}
         summary::-webkit-details-marker {display: none;}
         summary::after {content: "\f077"; font-family: "Font Awesome 6 Free"; font-weight: 900; transition: transform 0.3s;}
         details[open] summary::after {transform: rotate(180deg);}
         details[open] summary {border-radius: 12px 12px 0 0;}
         .acc-body {padding: 25px; background: white; border: 2px solid var(--sec); border-top: none; border-radius: 0 0 12px 12px;}
 
-        blockquote {background: var(--light); border-right: 8px solid var(--sec); padding: 30px; margin: 30px 0; font-size: 1.4rem; font-style: italic; border-radius: 12px;}
+        blockquote {background: var(--light); border-right: 8px solid var(--sec); padding: 25px; margin: 30px 0; font-size: 1.4rem; border-radius: 12px;}
         ul {padding-right: 40px; font-size: 1.25rem;}
         li {margin-bottom: 12px;}
         .answer {background: var(--light); padding: 20px; border-radius: 12px; border-right: 6px solid var(--sec); font-size: 1.3rem;}
         .correct {color: var(--main); font-weight: bold;}
 
-        footer {text-align: center; padding: 50px; background: var(--main); color: white; margin-top: 70px; font-size: 1.3rem;}
+        footer {background: var(--main); color: white; text-align: center; padding: 22px 15px; font-size: 1.25rem; margin-top: auto;}
+        @media (max-width: 768px) {footer {padding: 18px 10px; font-size: 1.15rem;}}
+
         @keyframes fadeIn {from {opacity: 0;} to {opacity: 1;}}
 
         @media print {
-            body {background: white; color: black; font-size: 12pt;}
+            body, header, footer {background: white !important; color: black !important;}
             header, .tabs, footer {display: none;}
-            .container {box-shadow: none;}
+            .container {box-shadow: none; margin:0; padding:10px;}
             summary {background: #eee !important; color: black !important;}
-            .acc-body {border: 1px solid #ccc;}
+            .acc-body {border: 1px solid #aaa;}
         }
     </style>
 </head>
 <body>
+
 <header>
     <h1>منتخب من كتاب التوحيد</h1>
-    <p>للشيخ الإمام محمد بن عبد الوهاب رحمه الله │ شرح مفصل وعميق + 60 سؤال مراجعة</p>
-    <p>جمع وترتيب / أبو عبد الرحمن محمد</p>
+    <p>للشيخ الإمام محمد بن عبد الوهاب رحمه الله</p>
+    <p>شرح مفصل وعميق + 60 سؤال مراجعة</p>
+    <p style="font-size:1rem; margin-top:8px; opacity:0.9;">جمع وترتيب / أبو عبد الرحمن محمد</p>
 </header>
 
 <div class="container">
@@ -136,10 +146,10 @@
         <details><summary>التصوير</summary><div class="acc-body">لا تدع صورة إلا طمستها، ولا تمثالًا إلا كسرته</div></details>
     </div>
 
-    <!-- تبويب 8 - 60 سؤال كاملة -->
+    <!-- تبويب 8 - الأسئلة كاملة 60 سؤال -->
     <div id="tab8" class="tab-content">
         <h2>الأسئلة والمراجعة الشاملة (60 سؤالًا)</h2>
-        <p style="text-align:center; font-size:1.5rem; color:var(--sec); margin:35px 0;">اضغط على السؤال لتظهر الإجابة</p>
+        <p style="text-align:center; font-size:1.4rem; color:var(--sec); margin:30px 0;">اضغط على السؤال لتظهر الإجابة</p>
 
         <details><summary>1. ما معنى العبادة عند ابن تيمية رحمه الله؟</summary><div class="acc-body"><div class="answer"><span class="correct">اسم جامع لكل ما يحبه الله ويرضاه من الأقوال والأعمال الظاهرة والباطنة</span></div></div></details>
         <details><summary>2. ما أصل العبادة عند القرطبي رحمه الله؟</summary><div class="acc-body"><div class="answer"><span class="correct">التذلل والخضوع</span></div></div></details>
